@@ -8,4 +8,3 @@ if __name__ == '__main__':
 
     # print(config.configs)
     # print('task', config.task)
-
