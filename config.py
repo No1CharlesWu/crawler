@@ -1,3 +1,4 @@
+import re
 import config_default
 
 
@@ -40,6 +41,21 @@ def toDict(d):
         D[k] = toDict(v) if isinstance(v, dict) else v
     return D
 
+def tolist(d):
+    r_list = list()
+    if isinstance(d, set):
+        for i in d:
+            r_list.append(re.sub(r'[^0-9a-zA-Z_]', '', i))
+        return r_list
+    elif isinstance(d, dict):
+        for k, v in d.items():
+            temp = tolist(v)
+            for i in temp:
+                t = re.sub(r'[^0-9a-zA-Z_]', '', k) + '_' + re.sub(r'[^0-9a-zA-Z_]', '', i)
+                r_list.append(t)
+        return r_list
+    else:
+        return []
 
 configs = config_default.configs
 
@@ -51,3 +67,8 @@ except ImportError:
     pass
 
 configs = toDict(configs)
+task = tolist(configs.task)
+print('task', task)
+# print(configs.db, configs.task)
+
+# configs 中如果出现了不符合函数命名规则的字符，则删去。例如：okcoin.cn' 变为 'okcoincn'
