@@ -1,10 +1,11 @@
-import config
-
-def a124c():
-    pass
+# import config
+from config import Config
+import database
 
 if __name__ == '__main__':
+    config = Config()
+    db = database.DataBase(config.db, config.task)
+
     # print(config.configs)
-    a124c()
-    pass
+    # print('task', config.task)
 
