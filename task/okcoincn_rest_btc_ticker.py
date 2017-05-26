@@ -1,4 +1,4 @@
-import taskbase
+from frame import taskbase
 
 
 class Task(taskbase.TaskBase):

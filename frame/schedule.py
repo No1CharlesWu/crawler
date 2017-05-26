@@ -1,6 +1,5 @@
 import threadpool
 import time
-import random
 import importlib
 import datetime
 # data = [((i,),{}) for i in range(10)]
@@ -55,9 +54,7 @@ class Schedule(object):
 
     def callback(self, request, result):
         print("**** Result from request #%s: %r" % (request.requestID, result))
-        c = datetime.datetime.now().timestamp()
-        time = c + result['interval']
-        result['time'] = time
+        result['time'] = datetime.datetime.now().timestamp() + result['interval']
         self.time_task_list.append(result)
 
     def thread_fun(self, *args, **kwargs):

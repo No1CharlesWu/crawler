@@ -9,14 +9,14 @@ import re
 class Config(object):
     def __init__(self):
         try:
-            import config_default
+            from frame import config_default
             self.configs = config_default.configs
         except ImportError:
             print('Error: %s' % ImportError)
             print('can not find config_default.py')
 
         try:
-            import config_override
+            from frame import config_override
             self.configs = self.merge(self.configs, config_override.configs)
         except ImportError:
             pass
