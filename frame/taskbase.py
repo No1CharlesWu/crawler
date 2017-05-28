@@ -21,3 +21,4 @@ class TaskBase(object):
 
     def do_after(self):
         pass
+

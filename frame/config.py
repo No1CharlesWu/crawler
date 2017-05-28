@@ -1,6 +1,4 @@
 import re
-
-
 # configs 中如果出现了不符合函数命名规则的字符，则删去。例如：okcoin.cn' 变为 'okcoincn'
 # Config类读取 config_default.py 和 config_override.py 对配置文件内容读入，
 # 把task变成一个list，其中存放需要进行的任务函数名称，db 是配置数据库的信息。
