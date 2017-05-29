@@ -2,11 +2,10 @@ from pymongo import MongoClient
 
 class DataBase(object):
     def __init__(self, d_db, l_task):
-        print('DataBase init test, although nothing now')
+        # print('DataBase init test, although nothing now')
         self.client = MongoClient(host=d_db['host'], port=d_db['port'])
         self.database = self.client[d_db['database']]
-        print(self.client, self.database)
-
+        # print(self.client, self.database)
 
     def connect(self):
         pass

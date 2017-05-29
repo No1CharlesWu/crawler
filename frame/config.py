@@ -1,4 +1,5 @@
 import re
+import importlib
 # configs 中如果出现了不符合函数命名规则的字符，则删去。例如：okcoin.cn' 变为 'okcoincn'
 # Config类读取 config_default.py 和 config_override.py 对配置文件内容读入，
 # 把task变成一个list，其中存放需要进行的任务函数名称，db 是配置数据库的信息。
@@ -8,6 +9,7 @@ class Config(object):
     def __init__(self):
         try:
             from frame import config_default
+            importlib.reload(config_default)
             self.configs = config_default.configs
         except ImportError:
             print('Error: %s' % ImportError)
@@ -15,12 +17,20 @@ class Config(object):
 
         try:
             from frame import config_override
+            importlib.reload(config_override)
             self.configs = self.merge(self.configs, config_override.configs)
         except ImportError:
             pass
 
         self.db = self.configs['db']
         self.task = self.split_joint(self.configs['task'])
+
+    def added_task(self, old_list):
+        r_list = list()
+        for task in self.task:
+            if task not in old_list:
+                r_list.append(task)
+        return r_list
 
     def merge(self, defaults, override):
         r = {}
