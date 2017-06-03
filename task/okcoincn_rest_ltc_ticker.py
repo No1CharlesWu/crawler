@@ -34,10 +34,12 @@ class Task(taskbase.TaskBase):
             data = okcoinSpot.ticker('ltc_cny')
         except Exception as e:
             print('Exception rest_ticker:', e)
-            self.result = dict()
             return
+
         # print(time.strftime("%H:%M:%S"), data, type(data))
         self.result = self.data_filter(data)
+
+        self.data_insert()
 
     def data_filter(self, data):
         r = dict()
@@ -50,6 +52,8 @@ class Task(taskbase.TaskBase):
         r['vol'] = float(data['ticker']['vol'])
         return r
 
+    def data_insert(self):
+        self.db.insert(self.module_name, self.result)
 
 if __name__ == '__main__':
     task = Task()

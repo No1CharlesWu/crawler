@@ -33,7 +33,6 @@ class Task(taskbase.TaskBase):
             data = okcoinSpot.ticker('btc_cny')
         except Exception as e:
             print('Exception rest_ticker:', e)
-            self.result = dict()
             return
 
         # print(time.strftime("%H:%M:%S"), data, type(data))

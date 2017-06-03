@@ -1,24 +1,16 @@
 class TaskBase(object):
     def __init__(self, module_name, db):
-        print('TaskBase init', db)
-        self.db = db
-        self.module_name = module_name
-        self.result = dict()
-
-        self.do_before()
+        self.do_before(module_name, db)
         self.do()
         self.do_after()
 
     def do_before(self, module_name, db):
-        pass
+        print('TaskBase init', db)
+        self.db = db
+        self.module_name = module_name
+        self.set_interval()
 
     def do(self):
-        pass
-
-    def data_filter(self, data):
-        pass
-
-    def data_insert(self):
         pass
 
     def do_after(self):
@@ -36,5 +28,4 @@ class TaskBase(object):
         r['module_name'] = self.module_name
         r['loop'] = self.loop
         r['interval'] = self.interval
-        r['result'] = self.result
         return r

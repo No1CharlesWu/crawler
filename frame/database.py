@@ -17,7 +17,7 @@ class DataBase(object):
         print('DataBase insert')
         coll = self.database[collection_name]
         result = coll.insert_one(data)
-        print(result.inserted_id)
+        # print(result.inserted_id)
 
     def update(self):
         pass
