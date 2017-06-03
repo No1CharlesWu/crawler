@@ -10,17 +10,24 @@ from frame import database
 class Schedule(object):
     TASK = 'task'
     THREADPOOL_COUNT = 4
+
     def __init__(self):
         print("Creating thread pool with 4 worker threads.")
         self.thread_pool = threadpool.ThreadPool(self.THREADPOOL_COUNT)
 
         self.l_task = list()
         self.time_task_list = list()
+
+        con = config.Config()
+        # self.l_add_task = con.added_task(self.l_task)
+        # self.l_task = con.task
+        self.db = database.DataBase(con.db, con.task)
+
         while True:
             con = config.Config()
             self.l_add_task = con.added_task(self.l_task)
             self.l_task = con.task
-            self.db = database.DataBase(con.db, con.task)
+            # self.db = database.DataBase(con.db, con.task)
 
             for task in self.l_add_task:
                 self.add_task(task, self.db)
@@ -29,14 +36,14 @@ class Schedule(object):
             for d in self.time_task_list[:]:
                 if d['time'] <= current:
                     if d['module_name'] in self.l_task:
-                        self.add_task(d['module_name'],self.db)
+                        self.add_task(d['module_name'], self.db)
                     self.time_task_list.remove(d)
 
             try:
                 time.sleep(0.1)
-                self.thread_pool.poll()
                 print("thread pool thread working...")
-                print("(active worker threads: %i)" % (threadpool.threading.activeCount()-1, ))
+                print("(active worker threads: %i)" % (threadpool.threading.activeCount() - 1,))
+                self.thread_pool.poll()
             except KeyboardInterrupt:
                 print("**** Interrupted!")
                 break
@@ -56,8 +63,9 @@ class Schedule(object):
 
     def callback(self, request, result):
         print("**** Result from request #%s: %r" % (request.requestID, result))
-        result['time'] = datetime.datetime.now().timestamp() + result['interval']
-        self.time_task_list.append(result)
+        if result['loop'] and result['interval'] >= 0:
+            result['time'] = datetime.datetime.now().timestamp() + result['interval']
+            self.time_task_list.append(result)
 
     def thread_fun(self, *args, **kwargs):
         # args[0]是模块名
@@ -69,9 +77,9 @@ class Schedule(object):
             raise
         except Exception:
             raise
-        result = task_module.Task(args[0])
+        result = task_module.Task(args[0], kwargs['db'])
         # result 应该 args[0]也就是task任务文件名。interval间隔时间 dict形式
-        print(result.get_result())
+        # print(result.get_result())
         return result.get_result()
 
     def handle_exception(self, request, exc_info):
