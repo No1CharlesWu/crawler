@@ -17,7 +17,6 @@ class Task(taskbase.TaskBase):
         :param symbol: 'btc_cny' 'ltc_cny'
         :return:
         """
-
         print('okcoincn_rest_btc_ticker')
         # 设置下次添加此任务的间隔时间，若不设置，则self.loop = False self.interval = -1 为不再添加此项任务
         self.set_interval(1)
@@ -36,8 +35,11 @@ class Task(taskbase.TaskBase):
             print('Exception rest_ticker:', e)
             self.result = dict()
             return
+
         # print(time.strftime("%H:%M:%S"), data, type(data))
         self.result = self.data_filter(data)
+
+        self.data_insert()
 
     def data_filter(self, data):
         r = dict()
@@ -49,6 +51,9 @@ class Task(taskbase.TaskBase):
         r['sell'] = float(data['ticker']['sell'])
         r['vol'] = float(data['ticker']['vol'])
         return r
+
+    def data_insert(self):
+        self.db.insert(self.module_name, self.result)
 
 
 if __name__ == '__main__':
