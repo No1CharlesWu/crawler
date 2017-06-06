@@ -52,6 +52,7 @@ class Task(taskbase.TaskBase):
         return r
 
     def data_insert(self):
+        self.db.create_index(self.module_name,[('timestamp','DESCENDING')])
         self.db.insert(self.module_name, self.result)
 
 

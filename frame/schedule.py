@@ -19,15 +19,12 @@ class Schedule(object):
         self.time_task_list = list()
 
         con = config.Config()
-        # self.l_add_task = con.added_task(self.l_task)
-        # self.l_task = con.task
         self.db = database.DataBase(con.db, con.task)
 
         while True:
             con = config.Config()
             self.l_add_task = con.added_task(self.l_task)
             self.l_task = con.task
-            # self.db = database.DataBase(con.db, con.task)
 
             for task in self.l_add_task:
                 self.add_task(task, self.db)
