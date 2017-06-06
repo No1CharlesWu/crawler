@@ -14,14 +14,13 @@ class DataBase(object):
         pass
 
     def insert(self, collection_name, data):
-        print('DataBase insert')
+        # print('DataBase insert')
         coll = self.database[collection_name]
         result = coll.insert_one(data)
         # print(result.inserted_id)
 
     # list [('timestamp','ASCENDING')] [('timestamp','DESCENDING')]
     def create_index(self, collection_name, data):
-        print(data)
         l = list()
         for i in data:
             t = tuple()

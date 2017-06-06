@@ -38,7 +38,7 @@ class Schedule(object):
 
             try:
                 time.sleep(0.1)
-                print("thread pool thread working...")
+                # print("thread pool thread working...")
                 print("(active worker threads: %i)" % (threadpool.threading.activeCount() - 1,))
                 self.thread_pool.poll()
             except KeyboardInterrupt:

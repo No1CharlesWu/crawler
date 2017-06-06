@@ -5,7 +5,7 @@ class TaskBase(object):
         self.do_after()
 
     def do_before(self, module_name, db):
-        print('TaskBase init', db)
+        # print('TaskBase init', db)
         self.db = db
         self.module_name = module_name
         self.set_interval()
