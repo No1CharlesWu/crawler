@@ -22,7 +22,7 @@ configs = {
                     'kline_3min'
                 },
                 'ltc': {
-                    'ticker',
+                    # 'ticker',
                     'depth_0.01',
                     'depth_0.1',
                     'depth_1',
@@ -35,7 +35,7 @@ configs = {
         'okcoin.com': {
             'rest': {
                 'btc': {
-                    'ticker',
+                    # 'ticker',
                     'depth_0.01',
                     'depth_0.1',
                     'depth_1',
@@ -44,7 +44,7 @@ configs = {
                     'kline_3min'
                 },
                 'ltc': {
-                    'ticker',
+                    # 'ticker',
                     'depth_0.01',
                     'depth_0.1',
                     'depth_1',
