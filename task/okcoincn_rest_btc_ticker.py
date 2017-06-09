@@ -14,7 +14,6 @@ class Task(taskbase.TaskBase):
         sell: 卖一价
         vol: 成交量(最近的24小时)
         symbol  String  否(默认btc_cny)   btc_cny:比特币    ltc_cny :莱特币
-        :param symbol: 'btc_cny' 'ltc_cny'
         :return:
         """
         print('okcoincn_rest_btc_ticker')
@@ -57,4 +56,4 @@ class Task(taskbase.TaskBase):
 
 
 if __name__ == '__main__':
-    task = Task()
+    pass

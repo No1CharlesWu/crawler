@@ -36,10 +36,6 @@ class Task(taskbase.TaskBase):
             return
 
         # print(time.strftime("%H:%M:%S"), len(data), data, type(data))
-        # count = 0
-        # for i in data:
-        #     count += 1
-        #     print(count, i)
         if data:
             self.result = self.data_filter(data)
             print(okcoincn_rest_btc_trades_last_tid, self.result)
