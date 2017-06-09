@@ -28,10 +28,10 @@ class Task(taskbase.TaskBase):
         okcoin_rest_url = 'www.okcoin.cn'
 
         # 现货API
-        okcoinSpot = okcoin_spot_api.OKCoinSpot(okcoin_rest_url, api_key, secret_key)
+        okcoin_spot = okcoin_spot_api.OKCoinSpot(okcoin_rest_url, api_key, secret_key)
 
         try:
-            data = okcoinSpot.ticker('ltc_cny')
+            data = okcoin_spot.ticker('ltc_cny')
         except Exception as e:
             print('Exception rest_ticker:', e)
             return

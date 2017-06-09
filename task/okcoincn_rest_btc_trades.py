@@ -1,5 +1,3 @@
-import time
-import datetime
 from frame import taskbase
 from library import okcoin_spot_api
 
@@ -18,12 +16,8 @@ class Task(taskbase.TaskBase):
         type: buy/sell
         symbol  String  否   btc_cny:比特币 ltc_cny :莱特币
         since   Long    否   tid:交易记录ID（返回数据不包括当前tid值,最多返回600条数据）
-        :param kwargs:
         :return:
         """
-        # symbol = kwargs['symbol'] if 'symbol' in kwargs else 'btc_cny'
-        # since = kwargs['since'] if 'since' in kwargs else ''
-        # print('现货历史交易信息 trades: symbol=%s since=%s' % (symbol, since))
         print('okcoincn_rest_btc_trades')
         # 设置下次添加此任务的间隔时间，若不设置，则self.loop = False self.interval = -1 为不再添加此项任务
         self.set_interval(10)
@@ -34,9 +28,9 @@ class Task(taskbase.TaskBase):
         okcoin_rest_url = 'www.okcoin.cn'
 
         # 现货API
-        okcoinSpot = okcoin_spot_api.OKCoinSpot(okcoin_rest_url, api_key, secret_key)
+        okcoin_spot = okcoin_spot_api.OKCoinSpot(okcoin_rest_url, api_key, secret_key)
         try:
-            data = okcoinSpot.trades(symbol='btc_cny', since=okcoincn_rest_btc_trades_last_tid)
+            data = okcoin_spot.trades(symbol='btc_cny', since=okcoincn_rest_btc_trades_last_tid)
         except Exception as e:
             print('Exception rest_trades', e)
             return
