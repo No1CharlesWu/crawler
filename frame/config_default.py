@@ -13,20 +13,20 @@ configs = {
         'okcoin.cn': {
             'rest': {
                 'btc': {
-                    # 'ticker',
+                    'ticker',
                     'depth_0.01',
                     'depth_0.1',
                     'depth_1',
                     'trades',
-                    # 'kline_1min',
+                    'kline_1min',
                     'kline_3min'
                 },
                 'ltc': {
-                    # 'ticker',
+                    'ticker',
                     'depth_0.01',
                     'depth_0.1',
                     'depth_1',
-                    # 'trades',
+                    'trades',
                     'kline_1min',
                     'kline_3min'
                 }
@@ -35,20 +35,20 @@ configs = {
         'okcoin.com': {
             'rest': {
                 'btc': {
-                    # 'ticker',
+                    'ticker',
                     'depth_0.01',
                     'depth_0.1',
                     'depth_1',
-                    # 'trades',
+                    'trades',
                     'kline_1min',
                     'kline_3min'
                 },
                 'ltc': {
-                    # 'ticker',
+                    'ticker',
                     'depth_0.01',
                     'depth_0.1',
                     'depth_1',
-                    # 'trades',
+                    'trades',
                     'kline_1min',
                     'kline_3min'
                 }
