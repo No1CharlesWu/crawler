@@ -18,7 +18,7 @@ class Task(taskbase.TaskBase):
         try:
             data = huobi_spot.get_kline(huobi_api.KLINE_BTC_CNY, '001', 5)
         except Exception as e:
-            print('Exception rest_ticker:', e)
+            print('Exception rest_kline_1min:', e)
             return
 
         # print(type(data), data)
