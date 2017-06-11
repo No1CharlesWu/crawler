@@ -46,7 +46,8 @@ class HuobiSpot(object):
             return None
 
         url = url.replace('[period]', period)
-        return httpRequest(url, {'length': length})
+        url = url + '?' + 'length' + '=' + str(length)
+        return httpRequest(url, {})
 
     def get_detail(self, url):
         return httpRequest(url, {})
