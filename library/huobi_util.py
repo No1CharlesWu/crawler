@@ -5,6 +5,7 @@ import urllib
 import urllib.parse
 import urllib.request
 import json
+
 # 在此输入您的Key
 ACCESS_KEY = "d9cf78de-f6da672b-52911e2c-b064c"
 SECRET_KEY = "03ff8324-f6092b49-b370309f-2cff5"
@@ -74,3 +75,9 @@ def httpRequest(url, params):
         mystr = mybytes.decode("utf8")
         fp.close()
         return json.loads(mystr)
+
+
+def get_md5_value(src):
+    myMd5 = hashlib.md5(src.encode('utf8'))
+    myMd5_Digest = myMd5.hexdigest()
+    return myMd5_Digest

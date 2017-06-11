@@ -60,6 +60,7 @@ configs = {
                     'ticker',
                     'depth',
                     'trades',
+                    'detail',
                     'kline_1min',
                     'kline_5min'
                 },
@@ -67,6 +68,7 @@ configs = {
                     'ticker',
                     'depth',
                     'trades',
+                    'detail',
                     'kline_1min',
                     'kline_5min'
                 },
@@ -74,6 +76,7 @@ configs = {
                     'ticker',
                     'depth',
                     'trades',
+                    'detail',
                     'kline_1min',
                     'kline_5min'
                 }
