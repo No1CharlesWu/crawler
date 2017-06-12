@@ -69,7 +69,7 @@ configs = {
                     'depth',
                     # 'trades',
                     'detail',
-                    # 'kline_1min',
+                    'kline_1min',
                     'kline_5min'
                 },
                 'btc_usd': {
@@ -77,7 +77,7 @@ configs = {
                     'depth',
                     # 'trades',
                     'detail',
-                    # 'kline_1min',
+                    'kline_1min',
                     'kline_5min'
                 }
             }
