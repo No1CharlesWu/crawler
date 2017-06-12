@@ -3,37 +3,37 @@ import datetime
 from library import huobi_api
 from frame import taskbase
 
-huobicom_rest_btc_cny_detail_last_md5 = 0
+huobicom_rest_btc_usd_depth_last_id = 0
 
 
 class Task(taskbase.TaskBase):
     def do(self):
-        print('huobicom_rest_btc_cny_detail')
+        print('huobicom_rest_usd_cny_depth')
         # 设置下次添加此任务的间隔时间，若不设置，则self.loop = False self.interval = -1 为不再添加此项任务
         self.set_interval(1)
 
         huobi_spot = huobi_api.HuobiSpot(huobi_api.API_KEY, huobi_api.SECRET_KEY)
 
         try:
-            data = huobi_spot.get_detail(huobi_api.DETAIL_BTC_CNY)
+            data = huobi_spot.get_depth(huobi_api.DEPTH_BTC_USD, 20)
         except Exception as e:
-            print('Exception rest_detail:', e)
+            print('Exception rest_depth:', e)
             return
 
-        # print('aaa', type(data), data)
+        # print(type(data), data)
         self.result = self.data_filter(data)
         print(self.result)
         if self.result:
             self.data_insert()
 
     def data_filter(self, data):
-        global huobicom_rest_btc_cny_detail_last_md5
-        data_md5 = huobi_api.get_md5_value(str(data))
-        if data_md5 == huobicom_rest_btc_cny_detail_last_md5:
+        global huobicom_rest_btc_usd_depth_last_id
+        if huobicom_rest_btc_usd_depth_last_id == data['id']:
             return None
         else:
-            huobicom_rest_btc_cny_detail_last_md5 = data_md5
-            data['timestamp'] = int(datetime.datetime.now().timestamp() * 1000)
+            huobicom_rest_btc_usd_depth_last_id = data['id']
+            data['timestamp'] = data['ts']
+            data.pop('ts')
             return data
 
     def data_insert(self):

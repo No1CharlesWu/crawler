@@ -5,6 +5,7 @@ from frame import taskbase
 
 huobicom_rest_btc_cny_depth_last_id = 0
 
+
 class Task(taskbase.TaskBase):
     def do(self):
         print('huobicom_rest_btc_cny_depth')
