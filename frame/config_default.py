@@ -65,19 +65,19 @@ configs = {
                     'kline_5min'
                 },
                 'ltc_cny': {
-                    'ticker',
+                    # 'ticker',
                     'depth',
-                    'trades',
+                    # 'trades',
                     'detail',
-                    'kline_1min',
+                    # 'kline_1min',
                     'kline_5min'
                 },
                 'btc_usd': {
-                    'ticker',
+                    # 'ticker',
                     'depth',
-                    'trades',
+                    # 'trades',
                     'detail',
-                    'kline_1min',
+                    # 'kline_1min',
                     'kline_5min'
                 }
             }
