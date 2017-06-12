@@ -3,8 +3,6 @@ import datetime
 from library import huobi_api
 from frame import taskbase
 
-huobicom_rest_ltc_cny_detail_last_md5 = 0
-
 
 class Task(taskbase.TaskBase):
     def do(self):
@@ -27,14 +25,8 @@ class Task(taskbase.TaskBase):
             self.data_insert()
 
     def data_filter(self, data):
-        global huobicom_rest_ltc_cny_detail_last_md5
-        data_md5 = huobi_api.get_md5_value(str(data))
-        if data_md5 == huobicom_rest_ltc_cny_detail_last_md5:
-            return None
-        else:
-            huobicom_rest_ltc_cny_detail_last_md5 = data_md5
-            data['timestamp'] = int(datetime.datetime.now().timestamp() * 1000)
-            return data
+        data['timestamp'] = int(datetime.datetime.now().timestamp() * 1000)
+        return data
 
     def data_insert(self):
         self.db.create_index(self.module_name, [('timestamp', 'DESCENDING')])
