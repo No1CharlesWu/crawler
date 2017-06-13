@@ -6,9 +6,6 @@ configs = {
         'password': "'",
         'database': 'crawler'
     },
-    'session': {
-        'secret': 'AwEsOmE'
-    },
     'task': {
         'okcoin.cn': {
             'rest': {
