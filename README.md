@@ -32,3 +32,4 @@ TODO：
 2. 修改config中task的表达形式，直接改成’okcoincn_rest_btc_ticker’ 的string字段。简化task任务添加。
 3. 重写taskbase类，不够简洁和完善。
 4. 添加log监控。
+5. 添加程序部署指令。控制程序、守护程序等。
