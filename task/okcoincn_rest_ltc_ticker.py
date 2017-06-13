@@ -58,4 +58,4 @@ class Task(taskbase.TaskBase):
 
 
 if __name__ == '__main__':
-    task = Task()
+    pass

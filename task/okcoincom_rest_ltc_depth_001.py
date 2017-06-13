@@ -28,11 +28,12 @@ class Task(taskbase.TaskBase):
         try:
             data = okcoin_spot.depth(symbol='ltc_usd', size=20)
         except Exception as e:
-            print('Exception rest_trades', e)
+            print('Exception rest_depth:', e)
             return
 
         # print(time.strftime("%H:%M:%S"), len(data), data, type(data))
         self.result = self.data_filter(data)
+
         self.data_insert()
 
     def data_filter(self, data):

@@ -3,6 +3,11 @@
 # 用于访问OKCOIN 现货REST API
 from library.http_md5_util import build_sign, http_get, http_post
 
+OKCOIN_CN = 'www.okcoin.cn'
+OKCOIN_COM = 'www.okcoin.com'
+API_KEY = 'c3b622bc-8255-40f2-9585-138928ae376d'
+SECRET_KEY = '7C1DDC1745C93B87BE1643A689938459'
+
 
 class OKCoinSpot:
     def __init__(self, url, api_key, secret_key):

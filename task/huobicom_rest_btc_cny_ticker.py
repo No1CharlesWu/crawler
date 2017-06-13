@@ -3,6 +3,7 @@ import datetime
 from library import huobi_api
 from frame import taskbase
 
+
 class Task(taskbase.TaskBase):
     def do(self):
         print('huobicom_rest_btc_cny_ticker')
@@ -17,9 +18,9 @@ class Task(taskbase.TaskBase):
             print('Exception rest_ticker:', e)
             return
 
-        print(type(data), data)
+        # print(type(data), data)
         self.result = self.data_filter(data)
-        print(self.result)
+        # print(self.result)
         if self.result:
             self.data_insert()
 
@@ -33,6 +34,7 @@ class Task(taskbase.TaskBase):
     def data_insert(self):
         self.db.create_index(self.module_name, [('timestamp', 'DESCENDING')])
         self.db.insert(self.module_name, self.result)
+
 
 if __name__ == '__main__':
     import time

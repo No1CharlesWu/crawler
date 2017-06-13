@@ -22,7 +22,7 @@ class Task(taskbase.TaskBase):
 
         # print(type(data), data)
         self.result = self.data_filter(data)
-        print(self.result)
+        # print(self.result)
         if self.result:
             self.data_insert()
 

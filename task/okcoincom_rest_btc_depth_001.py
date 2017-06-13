@@ -28,7 +28,7 @@ class Task(taskbase.TaskBase):
         try:
             data = okcoin_spot.depth(symbol='btc_usd', size=20)
         except Exception as e:
-            print('Exception rest_trades', e)
+            print('Exception rest_depth', e)
             return
 
         # print(time.strftime("%H:%M:%S"), len(data), data, type(data))

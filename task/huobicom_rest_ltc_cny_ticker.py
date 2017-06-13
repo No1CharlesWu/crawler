@@ -17,14 +17,13 @@ class Task(taskbase.TaskBase):
             print('Exception rest_ticker:', e)
             return
 
-        print(type(data), data)
+        # print(type(data), data)
         self.result = self.data_filter(data)
-        print(self.result)
+        # print(self.result)
         if self.result:
             self.data_insert()
 
     def data_filter(self, data):
-        r = dict()
         r = data['ticker']
         r['time'] = int(data['time']) * 1000
         r['timestamp'] = int(datetime.datetime.now().timestamp() * 1000)

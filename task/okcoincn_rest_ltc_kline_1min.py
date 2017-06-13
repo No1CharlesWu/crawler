@@ -2,7 +2,6 @@ import time
 from frame import taskbase
 from library import okcoin_spot_api
 
-global okcoincn_rest_ltc_kline_1min_last_timestamp
 okcoincn_rest_ltc_kline_1min_last_timestamp = 0
 
 
@@ -39,7 +38,7 @@ class Task(taskbase.TaskBase):
             data = okcoin_spot.kline(symbol='ltc_cny', type='1min', size=5,
                                      since=okcoincn_rest_ltc_kline_1min_last_timestamp)
         except Exception as e:
-            print('Exception rest_ticker:', e)
+            print('Exception rest_kline_1min:', e)
             return
 
         # print(time.strftime("%H:%M:%S"), data, type(data))

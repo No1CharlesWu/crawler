@@ -2,7 +2,6 @@ import time
 from frame import taskbase
 from library import okcoin_spot_api
 
-global okcoincom_rest_btc_trades_last_tid
 okcoincom_rest_btc_trades_last_tid = 0
 
 
@@ -39,7 +38,7 @@ class Task(taskbase.TaskBase):
         # print(time.strftime("%H:%M:%S"), len(data), data, type(data))
         if data:
             self.result = self.data_filter(data)
-            print(okcoincom_rest_btc_trades_last_tid, self.result)
+            # print(okcoincom_rest_btc_trades_last_tid, self.result)
             self.data_insert()
 
     def data_filter(self, data):
