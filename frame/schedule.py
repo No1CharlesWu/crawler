@@ -6,9 +6,9 @@ import datetime
 from frame import config
 from frame import database
 
-'''
+"""
 使用线程池做任务分发调度。
-'''
+"""
 
 
 class Schedule(object):
@@ -16,9 +16,9 @@ class Schedule(object):
     THREADPOOL_COUNT = 4
 
     def __init__(self):
-        '''
+        """
         创建线程池，循环读取配置，提取任务，根据时间间隔添加任务，执行任务
-        '''
+        """
         print("Creating thread pool with %s worker threads." % self.THREADPOOL_COUNT)
         self.thread_pool = threadpool.ThreadPool(self.THREADPOOL_COUNT)
 
@@ -58,11 +58,11 @@ class Schedule(object):
             self.thread_pool.joinAllDismissedWorkers()
 
     def add_task(self, task):
-        '''
+        """
         将任务添加到线程池队列中
         :param task: 任务模块名 str
         :return: 无
-        '''
+        """
         data = [((task,), {'db': self.db})]
         requests = threadpool.makeRequests(self.thread_fun, data, self.callback, self.handle_exception)
         for req in requests:
@@ -70,27 +70,26 @@ class Schedule(object):
             print("callback Work request #%s added." % (req.requestID,))
 
     def callback(self, request, result):
-        '''
+        """
         线程池的必备函数，对任务的返回值进行处理
         :param request: 任务编号
         :param result: 返回值
         :return: 无
-        '''
+        """
         print("**** Result from request #%s: %r" % (request.requestID, result))
         if result['loop'] and result['interval'] >= 0:
             result['time'] = datetime.datetime.now().timestamp() + result['interval']
             self.time_task_list.append(result)
 
     def thread_fun(self, *args, **kwargs):
-        '''
+        """
         线程池的必备函数，运行函数
         :param args: args[0]是task 模块名
         :param kwargs: kwargs['db'] 数据库句柄
         :return: 任务的返回值
-        '''
+        """
         try:
             task_module = importlib.import_module(self.TASK + '.' + args[0])
-            print(task_module)
         except ModuleNotFoundError:
             raise
         except Exception:
@@ -100,12 +99,12 @@ class Schedule(object):
         return result.get_result()
 
     def handle_exception(self, request, exc_info):
-        '''
+        """
         线程池的可选函数，异常处理
         :param request: 任务编号
         :param exc_info: 异常信息
         :return: 无
-        '''
+        """
         if not isinstance(exc_info, tuple):
             # Something is seriously wrong...
             print(self, request)

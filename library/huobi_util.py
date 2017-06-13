@@ -22,12 +22,14 @@ ORDER_ID_BY_TRADE_ID = "get_order_id_by_trade_id"
 SELL = "sell"
 SELL_MARKET = "sell_market"
 
-'''
-发送信息到api
-'''
-
 
 def send2api(pParams, extra):
+    """
+    发送信息到api
+    :param pParams:
+    :param extra:
+    :return:
+    """
     pParams['access_key'] = ACCESS_KEY
     pParams['created'] = int(time.time())
     pParams['sign'] = createSign(pParams)
@@ -41,12 +43,12 @@ def send2api(pParams, extra):
     return tResult
 
 
-'''
-生成签名
-'''
-
-
 def createSign(params):
+    """
+    生成签名
+    :param params:
+    :return:
+    """
     params['secret_key'] = SECRET_KEY
     params = sorted(params.items(), key=lambda d: d[0], reverse=False)
     message = urllib.parse.urlencode(params)
@@ -58,12 +60,13 @@ def createSign(params):
     return sig
 
 
-'''
-request
-'''
-
-
 def httpRequest(url, params):
+    """
+    request
+    :param url:
+    :param params:
+    :return:
+    """
     postdata = urllib.parse.urlencode(params)
     postdata = postdata.encode('utf-8')
 
@@ -78,6 +81,11 @@ def httpRequest(url, params):
 
 
 def get_md5_value(src):
+    """
+    获得 MD5
+    :param src:
+    :return:
+    """
     myMd5 = hashlib.md5(src.encode('utf8'))
     myMd5_Digest = myMd5.hexdigest()
     return myMd5_Digest
